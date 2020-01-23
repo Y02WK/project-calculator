@@ -71,7 +71,7 @@ function operate() {
     if (calcDisplay.textContent != '') {
         dataArray.push(calcDisplay.textContent);
     }
-    //if (dataArray.indexOf('x') != -1 && dataArray.indexOf('÷') != -1) {
+    if (!dataArray.includes('x') && !dataArray.includes('÷')) {
         while (dataArray.length > 1) {
             if (dataArray[1] = '+') {
                 calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
@@ -81,7 +81,7 @@ function operate() {
                 console.log(dataArray);
             }
         }
-    //}
+    }
     calcDisplay.textContent = calculations;
     dataArray = [];
     oldDisplay.textContent = '';
