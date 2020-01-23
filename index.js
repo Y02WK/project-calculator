@@ -73,20 +73,28 @@ function operate() {
     }
     if (!dataArray.includes('x') && !dataArray.includes('÷')) {
         while (dataArray.length > 1) {
-            if (dataArray[1] = '+') {
+            if (dataArray[1] == '+') {
                 calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
                 console.log(calculations)
                 dataArray.unshift(calculations);
                 dataArray.splice(1 ,3);
                 console.log(dataArray);
-            }
-        }
+            } else if (dataArray[1] == '-') {
+                calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
+                console.log(calculations)
+                dataArray.unshift(calculations);
+                dataArray.splice(1 ,3);
+                console.log(dataArray);
     }
     calcDisplay.textContent = calculations;
     dataArray = [];
     oldDisplay.textContent = '';
-}
+}}}
 
 function addition(a, b) {
     return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
 }
