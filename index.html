@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html>
     <title>T O P Calculator Project</title>
-    <script src=index.js></script>
+    <link href="style.css" rel=stylesheet>
+    <script src="index.js" defer></script>
     <body>
-        <div>
-            <button type='button' class='numbers'>1</button>
-            <button type='button' class='numbers'>2</button>
-            <button type='button' class='numbers'>3</button>
-            <button type='button' class='numbers'>4</button>
-            <button type='button' class='numbers'>5</button>
-            <button type='button' class='numbers'>6</button>
-            <button type='button' class='numbers'>7</button>
-            <button type='button' class='numbers'>8</button>
-            <button type='button' class='numbers'>9</button>
-        </div>
-
-        <div>
-            <button type='button' class='operator'>+</button>
-            <button type='button' class='operator'>-</button>
-            <button type='button' class='operator'>*</button>
-            <button type='button' class='operator'>/</button>
-            <button type='button' class='operator'>=</button>
-        </div>
-
-        <div>
-            <input type='text' id='display-box' value='1+1'>
-        </div>
-
-        <div>
-            <button type='button' id='clear-input'>Clear</button>
+        <div class='grid-container'>
+            <div class="calculator-display">0</div>
+            <button type='button' class='num-button' id='number0'>0</button>
+            <button type='button' class='num-button' id='number1'>1</button>
+            <button type='button' class='num-button' id='number2'>2</button>
+            <button type='button' class='num-button' id='number3'>3</button>
+            <button type='button' class='num-button' id='number4'>4</button>
+            <button type='button' class='num-button' id='number5'>5</button>
+            <button type='button' class='num-button' id='number6'>6</button>
+            <button type='button' class='num-button' id='number7'>7</button>
+            <button type='button' class='num-button' id='number8'>8</button>
+            <button type='button' class='num-button' id='number9'>9</button>
+            <button type='button' class='op-button' id='op-plus'>+</button>
+            <button type='button' class='op-button' id='op-minus'>-</button>
+            <button type='button' class='op-button' id='op-multiply'>x</button>
+            <button type='button' class='op-button' id='op-divide'>÷</button>
+            <button type='button' class='op-button' id='op-decimal'>.</button>
+            <button type='button' class='clear'>AC</button>
+            <button type='button' class='delete'>Del</button>
+            <button type='button' class='equals'>=</button>
         </div>
         
     </body>
