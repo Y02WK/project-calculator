@@ -5,6 +5,8 @@ const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
 const delButton = document.querySelector('.delete');
 const calcDisplay = calculator.querySelector('.calculator-display');
+const oldDisplay = calculator.querySelector('.old-display');
+let dataArray = [];
 
 //console.log(numButtons)
 
@@ -28,11 +30,12 @@ numButtons.forEach(button => {
     })
 })
 
-console.log(clearButton)
-
 opButtons.forEach(button => {
     button.addEventListener('click', () => {
-        
+        dataArray.push(calcDisplay.textContent);
+        oldDisplay.textContent += calcDisplay.textContent + ' ' + button.textContent + ' ';
+        calcDisplay.textContent = '';
+        dataArray.push(button.textContent)
     })
 })
 
@@ -46,6 +49,8 @@ delButton.addEventListener('click', () => {
 
 function clearCalc() {
     calcDisplay.textContent = 0;
+    oldDisplay.textContent = '';
+    dataArray = [];
  }
 
 function deleteLast() {
@@ -57,4 +62,8 @@ function deleteLast() {
             calcDisplay.textContent = 0;
         }
     }
+}
+
+function operate() {
+
 }

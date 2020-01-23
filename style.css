@@ -8,15 +8,30 @@
     margin-top: 3rem;
 }
 
+.old-display {
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 4rem;
+    grid-area: 1 / 1 / span 1 / span 4;
+    text-align: right;
+    text-justify: auto;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 3rem;
+    padding-right: 10px;
+    color: grey;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .calculator-display {
     background-color: rgba(0, 0, 0, 0.9);
-    height: 6rem;
+    height: 4rem;
     grid-area: 2 / 1 / span 1 / span 4;
     text-align: right;
     text-justify: auto;
     font-size: 3rem;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 6rem;
+    line-height: 4rem;
     padding-right: 10px;
     color: white;
     word-wrap: break-word;
