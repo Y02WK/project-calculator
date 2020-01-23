@@ -8,8 +8,6 @@ const calcDisplay = calculator.querySelector('.calculator-display');
 const oldDisplay = calculator.querySelector('.old-display');
 let dataArray = [];
 
-//console.log(numButtons)
-
 function appendNumber(number) {
     currentDisplay = number;
 }
@@ -21,7 +19,6 @@ function displayRefresh() {
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         const display = calcDisplay.innerText;
-        console.log(button.innerText)
         if (display == 0) {
             calcDisplay.textContent = button.innerText;
         } else if (display > 0) {
@@ -36,6 +33,7 @@ opButtons.forEach(button => {
         oldDisplay.textContent += calcDisplay.textContent + ' ' + button.textContent + ' ';
         calcDisplay.textContent = '';
         dataArray.push(button.textContent)
+        console.log(dataArray)
     })
 })
 
@@ -45,6 +43,10 @@ clearButton.addEventListener('click', () => {
 
 delButton.addEventListener('click', () => {
     deleteLast();
+})
+
+equalsButton.addEventListener('click', () => {
+    operate();
 })
 
 function clearCalc() {
@@ -65,5 +67,26 @@ function deleteLast() {
 }
 
 function operate() {
+    let calculations = 0;
+    if (calcDisplay.textContent != '') {
+        dataArray.push(calcDisplay.textContent);
+    }
+    //if (dataArray.indexOf('x') != -1 && dataArray.indexOf('÷') != -1) {
+        while (dataArray.length > 1) {
+            if (dataArray[1] = '+') {
+                calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
+                console.log(calculations)
+                dataArray.unshift(calculations);
+                dataArray.splice(1 ,3);
+                console.log(dataArray);
+            }
+        }
+    //}
+    calcDisplay.textContent = calculations;
+    dataArray = [];
+    oldDisplay.textContent = '';
+}
 
+function addition(a, b) {
+    return a + b;
 }
