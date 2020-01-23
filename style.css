@@ -1,0 +1,105 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1px, 1px;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+}
+
+.calculator-display {
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 6rem;
+    grid-area: 2 / 1 / span 1 / span 4;
+    text-align: right;
+    text-justify: auto;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 6rem;
+    padding-right: 10px;
+    color: white;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+button {
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    font-size: larger;
+}
+
+#number0 {
+    grid-area: 7 / 1;
+}
+
+#number1 {
+    grid-area: 6 / 1;
+}
+
+#number2 {
+    grid-area: 6 / 2;
+}
+
+#number3 {
+    grid-area: 6 / 3;
+}
+
+#number4 {
+    grid-area: 5 / 1;
+}
+
+#number5 {
+    grid-area: 5 / 2;
+}
+
+#number6 {
+    grid-area: 5 / 3;
+}
+
+#number7 {
+    grid-area: 4 / 1;
+}
+
+#number8 {
+    grid-area: 4 / 2;
+}
+
+#number9 {
+    grid-area: 4 / 3;
+}
+
+#op-divide {
+    grid-area: 3 / 4;
+}
+
+#op-multiply {
+    grid-area: 4 / 4;
+}
+
+#op-minus {
+    grid-area: 5 / 4;
+}
+
+#op-plus {
+    grid-area: 6 / 4;
+}
+
+.equals {
+    grid-area: 7 / 3 / span 1 / span 2;
+    width: 10rem;
+}
+
+#op-decimal {
+    grid-area: 7 / 2;
+}
+
+.clear {
+    grid-area: 3 / 1 / span 1 / span 2;
+    width: 10rem;
+}
+
+.delete {
+    grid-area: 3 / 3;
+}
