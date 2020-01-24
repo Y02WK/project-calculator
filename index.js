@@ -83,7 +83,10 @@ function operate() {
                 const multiplyIndex = dataArray.indexOf('x');
                 calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
                 dataArray.splice(multiplyIndex-1 ,3, calculations)
-                console.log(dataArray[multiplyIndex-1]);
+            } else if (dataArray.includes('÷')) {
+                const diviIndex = dataArray.indexOf('÷');
+                calculations = divide(parseFloat(dataArray[diviIndex-1]), parseFloat(dataArray[diviIndex+1]))
+                dataArray.splice(diviIndex-1 ,3, calculations)
             }
         }
     }
