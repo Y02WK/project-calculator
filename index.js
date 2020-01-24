@@ -79,21 +79,18 @@ function operate() {
                     calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
                     dataArray.splice(0 ,3, calculations);
                 }
-            } 
+            } else if (dataArray.includes('x')) {
+                const multiplyIndex = dataArray.indexOf('x');
+                calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
+                dataArray.splice(multiplyIndex-1 ,3, calculations)
+                console.log(dataArray[multiplyIndex-1]);
+            }
+        }
     }
-    
     calcDisplay.textContent = dataArray[0];
     dataArray = [];
     oldDisplay.textContent = '';
-        }
-    // } else if (dataArray.includes('x') || dataArray.includes('÷')) {
-    //     while ((dataArray.includes('x') || dataArray.includes('÷')) && dataArray.length > 1) {
-    //         const multiplyIndex = dataArray.indexOf('x');
-    //         calculations = multiply(dataArray[multiplyIndex-1], dataArray[multiplyIndex+1]);
-            
-    //     }
-    }
-//}
+}
 
 function addition(a, b) {
     return a + b;
@@ -105,4 +102,8 @@ function subtract(a, b) {
 
 function multiply(a, b) {
     return a * b
+}
+
+function divide(a ,b) {
+    return a / b;
 }
