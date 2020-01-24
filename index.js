@@ -79,6 +79,16 @@ function operate() {
                     calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
                     dataArray.splice(0 ,3, calculations);
                 }
+            } else if (dataArray.includes('x') && dataArray.includes('÷')) {
+                const multiplyIndex = dataArray.indexOf('x');
+                const diviIndex = dataArray.indexOf('÷');
+                if (multiplyIndex < diviIndex) {
+                    calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
+                    dataArray.splice(multiplyIndex-1 ,3, calculations)
+                } else {
+                    calculations = divide(parseFloat(dataArray[diviIndex-1]), parseFloat(dataArray[diviIndex+1]))
+                    dataArray.splice(diviIndex-1 ,3, calculations)
+                }
             } else if (dataArray.includes('x')) {
                 const multiplyIndex = dataArray.indexOf('x');
                 calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
@@ -87,7 +97,7 @@ function operate() {
                 const diviIndex = dataArray.indexOf('÷');
                 calculations = divide(parseFloat(dataArray[diviIndex-1]), parseFloat(dataArray[diviIndex+1]))
                 dataArray.splice(diviIndex-1 ,3, calculations)
-            }
+            } 
         }
     }
     calcDisplay.textContent = dataArray[0];
