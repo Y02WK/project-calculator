@@ -120,3 +120,13 @@ function multiply(a, b) {
 function divide(a ,b) {
     return a / b;
 }
+
+/* TO DO LIST
+
+1) Add decimal place functionality.
+2) Add check to allow reset when inputting numbers after an equals operation. 
+3) Add check to disable input of operator button more than once in a row.
+4) Add check to disable division by 0.
+5) Add keyboard support
+6) Implement rounding of displayed result
+*/
