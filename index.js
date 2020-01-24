@@ -70,26 +70,30 @@ function operate() {
     let calculations = 0;
     if (calcDisplay.textContent != '') {
         dataArray.push(calcDisplay.textContent);
-    }
-    if (!dataArray.includes('x') && !dataArray.includes('÷')) {
         while (dataArray.length > 1) {
-            if (dataArray[1] == '+') {
-                calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
-                console.log(calculations)
-                dataArray.unshift(calculations);
-                dataArray.splice(1 ,3);
-                console.log(dataArray);
-            } else if (dataArray[1] == '-') {
-                calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
-                console.log(calculations)
-                dataArray.unshift(calculations);
-                dataArray.splice(1 ,3);
-                console.log(dataArray);
+            if (!dataArray.includes('x') && !dataArray.includes('÷')) {
+                if (dataArray[1] == '+') {
+                    calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
+                    dataArray.splice(0 ,3, calculations);
+                } else if (dataArray[1] == '-') {
+                    calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
+                    dataArray.splice(0 ,3, calculations);
+                }
+            } 
     }
-    calcDisplay.textContent = calculations;
+    
+    calcDisplay.textContent = dataArray[0];
     dataArray = [];
     oldDisplay.textContent = '';
-}}}
+        }
+    // } else if (dataArray.includes('x') || dataArray.includes('÷')) {
+    //     while ((dataArray.includes('x') || dataArray.includes('÷')) && dataArray.length > 1) {
+    //         const multiplyIndex = dataArray.indexOf('x');
+    //         calculations = multiply(dataArray[multiplyIndex-1], dataArray[multiplyIndex+1]);
+            
+    //     }
+    }
+//}
 
 function addition(a, b) {
     return a + b;
@@ -97,4 +101,8 @@ function addition(a, b) {
 
 function subtract(a, b) {
     return a - b;
+}
+
+function multiply(a, b) {
+    return a * b
 }
