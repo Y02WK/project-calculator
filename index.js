@@ -39,7 +39,7 @@ opButtons.forEach(button => {
             opCheck = true;
         }
     })
-})    
+})
 
 decimalButton.addEventListener('click', () => {
     calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
@@ -138,8 +138,11 @@ function divide(a ,b) {
 
 function roundNumber(num) {
     return Math.round(num * Math.pow(10, 6)) / Math.pow(10, 6);
-  }
+}
 
+document.addEventListener("keydown", function(event) {
+    console.log(event.which);
+})
 /* TO DO LIST
 5) Add keyboard support
 */
