@@ -7,6 +7,7 @@ const delButton = document.querySelector('.delete');
 const decimalButton = document.querySelector('.op-decimal')
 const calcDisplay = calculator.querySelector('.calculator-display');
 const oldDisplay = calculator.querySelector('.old-display');
+let opCheck = false;
 let dataArray = [];
 let calculationDone = false;
 
@@ -21,18 +22,24 @@ numButtons.forEach(button => {
         } else {
             calcDisplay.textContent = display + button.innerText;
         }
+        opCheck = false;
     })
 })
 
 opButtons.forEach(button => {
     button.addEventListener('click', () => {
-        dataArray.push(calcDisplay.textContent);
-        oldDisplay.textContent += calcDisplay.textContent + ' ' + button.textContent + ' ';
-        calcDisplay.textContent = '';
-        dataArray.push(button.textContent)
-        console.log(dataArray)
+        if (opCheck == true) {
+            return
+        } else {
+            dataArray.push(calcDisplay.textContent);
+            dataArray.push(button.textContent)
+            oldDisplay.textContent += calcDisplay.textContent + ' ' + button.textContent + ' ';
+            calcDisplay.textContent = '';
+            console.log(dataArray)
+            opCheck = true;
+        }
     })
-})
+})    
 
 decimalButton.addEventListener('click', () => {
     calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
@@ -125,9 +132,6 @@ function divide(a ,b) {
 }
 
 /* TO DO LIST
-
-2) Add check to allow reset when inputting numbers after an equals operation. 
-3) Add check to disable input of operator button more than once in a row.
 4) Add check to disable division by 0.
 5) Add keyboard support
 */
