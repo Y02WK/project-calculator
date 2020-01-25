@@ -8,14 +8,16 @@ const decimalButton = document.querySelector('.op-decimal')
 const calcDisplay = calculator.querySelector('.calculator-display');
 const oldDisplay = calculator.querySelector('.old-display');
 let dataArray = [];
+let calculationDone = false;
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         const display = calcDisplay.innerText;
         if (display == 0) {
             calcDisplay.textContent = button.innerText;
-        } else if ((display > 0) && (dataArray.length == 0)) {
-            calcDisplay.textContent = '' + button.innerText;
+        } else if (calculationDone == true) {
+            calcDisplay.textContent = button.innerText;
+            calculationDone = false;
         } else {
             calcDisplay.textContent = display + button.innerText;
         }
@@ -67,6 +69,7 @@ function deleteLast() {
 
 function operate() {
     let calculations = 0;
+    calculationDone = false;
     if (calcDisplay.textContent != '') {
         dataArray.push(calcDisplay.textContent);
         while (dataArray.length > 1) {
@@ -102,6 +105,7 @@ function operate() {
     calcDisplay.textContent = dataArray[0];
     dataArray = [];
     oldDisplay.textContent = '';
+    calculationDone = true;
 }
 
 function addition(a, b) {
