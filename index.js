@@ -14,7 +14,9 @@ numButtons.forEach(button => {
         const display = calcDisplay.innerText;
         if (display == 0) {
             calcDisplay.textContent = button.innerText;
-        } else if (display > 0) {
+        } else if ((display > 0) && (dataArray.length == 0)) {
+            calcDisplay.textContent = '' + button.innerText;
+        } else {
             calcDisplay.textContent = display + button.innerText;
         }
     })
@@ -120,7 +122,6 @@ function divide(a ,b) {
 
 /* TO DO LIST
 
-1) Add decimal place functionality.
 2) Add check to allow reset when inputting numbers after an equals operation. 
 3) Add check to disable input of operator button more than once in a row.
 4) Add check to disable division by 0.
