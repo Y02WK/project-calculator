@@ -35,7 +35,7 @@ opButtons.forEach(button => {
             dataArray.push(button.textContent)
             oldDisplay.textContent += calcDisplay.textContent + ' ' + button.textContent + ' ';
             calcDisplay.textContent = '';
-            console.log(dataArray)
+            calculationDone = false;
             opCheck = true;
         }
     })
