@@ -109,7 +109,7 @@ function operate() {
             } 
         }
     }
-    calcDisplay.textContent = dataArray[0];
+    calcDisplay.textContent = roundNumber(dataArray[0]);
     dataArray = [];
     oldDisplay.textContent = '';
     calculationDone = true;
@@ -136,7 +136,10 @@ function divide(a ,b) {
     }
 }
 
+function roundNumber(num) {
+    return Math.round(num * Math.pow(10, 6)) / Math.pow(10, 6);
+  }
+
 /* TO DO LIST
-4) Add check to disable division by 0.
 5) Add keyboard support
 */
