@@ -4,17 +4,10 @@ const opButtons = calculator.querySelectorAll('.op-button');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
 const delButton = document.querySelector('.delete');
+const decimalButton = document.querySelector('.op-decimal')
 const calcDisplay = calculator.querySelector('.calculator-display');
 const oldDisplay = calculator.querySelector('.old-display');
 let dataArray = [];
-
-function appendNumber(number) {
-    currentDisplay = number;
-}
-
-function displayRefresh() {
-    currentDisplay.innerText = currentDisplay;
-}
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -35,6 +28,10 @@ opButtons.forEach(button => {
         dataArray.push(button.textContent)
         console.log(dataArray)
     })
+})
+
+decimalButton.addEventListener('click', () => {
+    calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
 })
 
 clearButton.addEventListener('click', () => {
@@ -128,5 +125,4 @@ function divide(a ,b) {
 3) Add check to disable input of operator button more than once in a row.
 4) Add check to disable division by 0.
 5) Add keyboard support
-6) Implement rounding of displayed result
 */
