@@ -128,7 +128,12 @@ function multiply(a, b) {
 }
 
 function divide(a ,b) {
-    return a / b;
+    if (b == 0) {
+        window.alert('This is an illegal operation! Please do not divide by 0 you KLUTZ!');
+        return undefined;
+    } else {
+        return a / b;
+    }
 }
 
 /* TO DO LIST
