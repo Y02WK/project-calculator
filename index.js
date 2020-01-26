@@ -12,24 +12,52 @@ const opArray = [88, 187, 189, 191];
 let opCheck = false;
 let dataArray = [];
 let calculationDone = false;
+let isDown = false;
 
 window.addEventListener('keydown', (event) => {
     event.preventDefault();
-    if (keyArray.includes(event.keyCode)) {
-        keyboardNum(event);
-    } else if (opArray.includes(event.keyCode)) {
-        keyboardOp(event);
-    } else if (event.keyCode == 13) {
-        operate();
-    } else if (event.keyCode == 190) {
-        decimalPlace();
-    } else if (event.keyCode == 8) {
-        deleteLast();
-    } else if (event.keyCode == 67) {
-        clearCalc();
-    } else if (event.keyCode == 13) {
-        operate()
+    if (isDown == false) {
+        if (keyArray.includes(event.keyCode)) {
+            keyboardNum(event);
+        } else if (opArray.includes(event.keyCode)) {
+            keyboardOp(event);
+        } else if (event.keyCode == 13) {
+            equalsButton.classList.add('pressing')
+            operate();
+        } else if (event.keyCode == 190) {
+            decimalButton.classList.add('pressing')
+            decimalPlace();
+        } else if (event.keyCode == 8) {
+            delButton.classList.add('pressing')
+            deleteLast();
+        } else if (event.keyCode == 67) {
+            clearButton.classList.add('pressing')
+            clearCalc();
+        }
+    } else {
+        return;
     }
+    isDown = true;
+})
+
+window.addEventListener('keyup', (event) => {
+    event.preventDefault();
+    if (keyArray.includes(event.keyCode)) {
+        const numKey = document.querySelector(`.num-button[data-key="${event.keyCode}"]`);
+        numKey.classList.remove('pressing-num')
+    } else if (opArray.includes(event.keyCode)) {
+        const opKey = document.querySelector(`.op-button[data-key="${event.keyCode}"]`);
+        opKey.classList.remove('pressing');
+    } else if (event.keyCode == 13) {
+        equalsButton.classList.remove('pressing')
+    } else if (event.keyCode == 190) {
+        decimalButton.classList.remove('pressing')
+    } else if (event.keyCode == 8) {
+        delButton.classList.remove('pressing')
+    } else if (event.keyCode == 67) {
+        clearButton.classList.remove('pressing')
+    }
+    isDown = false;
 })
 
 numButtons.forEach(button => {
@@ -41,7 +69,11 @@ numButtons.forEach(button => {
             calcDisplay.textContent = button.innerText;
             calculationDone = false;
         } else {
+            if (calcDisplay.textContent.length < 11) {
             calcDisplay.textContent = display + button.innerText;
+            } else {
+                window.alert("Sorry this calculator only takes numbers up to 11 digits long")
+            }
         }
         opCheck = false;
     })
@@ -168,6 +200,7 @@ function roundNumber(num) {
 function keyboardNum (e) {
     const numKey = document.querySelector(`.num-button[data-key="${e.keyCode}"]`);
     const display = calcDisplay.innerText;
+    numKey.classList.add('pressing-num');
     try {
         if (display == 0) {
         calcDisplay.textContent = numKey.innerText;
@@ -190,6 +223,7 @@ function keyboardNum (e) {
 
 function keyboardOp (e) {
     const opKey = document.querySelector(`.op-button[data-key="${e.keyCode}"]`);
+    opKey.classList.add('pressing');
     try {
         if (!opCheck == true) {
             dataArray.push(calcDisplay.textContent);
@@ -204,19 +238,8 @@ function keyboardOp (e) {
     }   
 }
 
-function keyboardFunc (e) {
-    e.preventDefault();
-    try {
-        //keyboardNum(e);
-        keyboardDecimal(e);
-        keyboardOp(e);
-        console.log(dataArray)
-    } catch(e) {
-        null;
-    }
-}
-
 function decimalPlace() {
+    decimalButton.classList.add('pressing')
     if (!calcDisplay.textContent.includes('.')){
         calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
     } else {
