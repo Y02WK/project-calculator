@@ -27,15 +27,10 @@ window.addEventListener('keydown', (event) => {
         deleteLast();
     } else if (event.keyCode == 67) {
         clearCalc();
+    } else if (event.keyCode == 13) {
+        operate()
     }
 })
-window.addEventListener('keydown', (event) => {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-        operate();
-    }
-})
-
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -180,7 +175,12 @@ function keyboardNum (e) {
         calcDisplay.textContent = numKey.innerText;
         calculationDone = false;
     } else {
-        calcDisplay.textContent = (display + numKey.innerText)
+        if (calcDisplay.textContent.length < 11) {
+            calcDisplay.textContent = (display + numKey.innerText);
+        } else {
+            window.alert("Sorry this calculator only takes numbers up to 11 digits long")
+        }
+        
     }
     opCheck = false;
     } catch(e) {
@@ -223,6 +223,3 @@ function decimalPlace() {
         return undefined;
     }
 }
-/* TO DO LIST
-5) Add keyboard support
-*/
