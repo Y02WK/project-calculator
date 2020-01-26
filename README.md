@@ -1,3 +1,6 @@
+---
+permalink: /index.html
+---
 This project is from THE ODIN PROJECT's curriculum.
 
 Created a in-browser calculator using HTML, CSS and JavaScript.
