@@ -100,25 +100,21 @@ button {
 
 #op-divide {
     grid-area: 3 / 4;
-    /* background-color: rgba(255, 171, 111, 0.9); */
     background-color: rgba(110, 110, 110, 0.9);
 }
 
 #op-multiply {
     grid-area: 4 / 4;
-    /* background-color: rgba(114, 123, 250, 0.9) */
     background-color: rgba(110, 110, 110, 0.9);
 }
 
 #op-minus {
     grid-area: 5 / 4;
-    /* background-color: rgba(252, 205, 78, 0.9); */
     background-color: rgba(110, 110, 110, 0.9);
 }
 
 #op-plus {
     grid-area: 6 / 4;
-    /* background-color: rgba(250,128,114,0.9); */
     background-color: rgba(110, 110, 110, 0.9);
 }
 
@@ -130,7 +126,7 @@ button {
 
 #op-decimal {
     grid-area: 7 / 2;
-    background-color: rgb(161, 205, 90);
+    background-color: rgba(161, 205, 90, 0.9);
 }
 
 .clear {
@@ -176,6 +172,10 @@ button {
     background-color: rgba(199, 40, 23, 0.9);
 }
 
+#op-decimal:hover {
+    background-color: rgba(127, 161, 70, 0.9);
+}
+
 button:focus{
     outline: 0;
 }
@@ -186,6 +186,45 @@ button:focus{
 
 .pressing-num {
     border: 1px inset black;
-    background-color: rgba(202, 202, 202, 0.9);
-    transition: ease 0.3s;
+    background-color: rgba(202, 202, 202, 0.9) !important;
+}
+
+.pressing-del {
+    border: 1px inset black;
+    background-color: rgba(199, 40, 23, 0.9) !important;
+}
+
+.pressing-dec {
+    border: 1px inset black;
+    background-color: rgba(127, 161, 70, 0.9) !important;
+}
+
+.pressing-clear {
+    border: 1px inset black;
+    background-color: rgba(53, 149, 187, 0.9) !important;
+}
+
+.pressing-plus {
+    border: 1px inset black;
+    background-color: rgba(221, 113, 101, 0.9) !important;
+}
+
+.pressing-minus {
+    border: 1px inset black;
+    background-color: rgba(216, 175, 63, 0.9) !important;
+}
+
+.pressing-multiply {
+    border: 1px inset black;
+    background-color: rgba(94, 102, 207, 0.9) !important;
+}
+
+.pressing-divide {
+    border: 1px inset black;
+    background-color: rgba(216, 145, 94, 0.9) !important;
+}
+
+.pressing-equals {
+    border: 1px inset black;
+    background-color: rgba(47, 202, 176, 0.9) !important;
 }

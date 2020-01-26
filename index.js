@@ -7,6 +7,7 @@ const delButton = document.querySelector('.delete');
 const decimalButton = document.querySelector('.op-decimal')
 const calcDisplay = calculator.querySelector('.calculator-display');
 const oldDisplay = calculator.querySelector('.old-display');
+const plusButton = calculator.querySelector('#op-plus')
 const keyArray  = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
 const opArray = [88, 187, 189, 191];
 let opCheck = false;
@@ -20,18 +21,28 @@ window.addEventListener('keydown', (event) => {
         if (keyArray.includes(event.keyCode)) {
             keyboardNum(event);
         } else if (opArray.includes(event.keyCode)) {
+            const opKey = document.querySelector(`.op-button[data-key="${event.keyCode}"]`);
+            if (event.keyCode == 187) {
+                opKey.classList.add('pressing-plus')
+            } else if (event.keyCode == 189) {
+                opKey.classList.add('pressing-minus')
+            } else if (event.keyCode == 88) {
+                opKey.classList.add('pressing-multiply')
+            } else if (event.keyCode == 191) {
+                opKey.classList.add('pressing-divide')
+            }
             keyboardOp(event);
         } else if (event.keyCode == 13) {
-            equalsButton.classList.add('pressing')
+            equalsButton.classList.add('pressing-equals')
             operate();
         } else if (event.keyCode == 190) {
-            decimalButton.classList.add('pressing')
+            decimalButton.classList.add('pressing-dec')
             decimalPlace();
         } else if (event.keyCode == 8) {
-            delButton.classList.add('pressing')
+            delButton.classList.add('pressing-del')
             deleteLast();
         } else if (event.keyCode == 67) {
-            clearButton.classList.add('pressing')
+            clearButton.classList.add('pressing-clear')
             clearCalc();
         }
     } else {
@@ -47,15 +58,23 @@ window.addEventListener('keyup', (event) => {
         numKey.classList.remove('pressing-num')
     } else if (opArray.includes(event.keyCode)) {
         const opKey = document.querySelector(`.op-button[data-key="${event.keyCode}"]`);
-        opKey.classList.remove('pressing');
+        if (event.keyCode == 187) {
+            opKey.classList.remove('pressing-plus')
+        } else if (event.keyCode == 189) {
+            opKey.classList.remove('pressing-minus')
+        } else if (event.keyCode == 88) {
+            opKey.classList.remove('pressing-multiply')
+        } else if (event.keyCode == 191) {
+            opKey.classList.remove('pressing-divide')
+        }
     } else if (event.keyCode == 13) {
-        equalsButton.classList.remove('pressing')
+        equalsButton.classList.remove('pressing-equals')
     } else if (event.keyCode == 190) {
-        decimalButton.classList.remove('pressing')
+        decimalButton.classList.remove('pressing-dec')
     } else if (event.keyCode == 8) {
-        delButton.classList.remove('pressing')
+        delButton.classList.remove('pressing-del')
     } else if (event.keyCode == 67) {
-        clearButton.classList.remove('pressing')
+        clearButton.classList.remove('pressing-clear')
     }
     isDown = false;
 })
@@ -223,7 +242,9 @@ function keyboardNum (e) {
 
 function keyboardOp (e) {
     const opKey = document.querySelector(`.op-button[data-key="${e.keyCode}"]`);
-    opKey.classList.add('pressing');
+    if (e.keyCode == 187) {
+        opKey.classList.add('pressing-plus')
+    };
     try {
         if (!opCheck == true) {
             dataArray.push(calcDisplay.textContent);
@@ -239,7 +260,6 @@ function keyboardOp (e) {
 }
 
 function decimalPlace() {
-    decimalButton.classList.add('pressing')
     if (!calcDisplay.textContent.includes('.')){
         calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
     } else {
