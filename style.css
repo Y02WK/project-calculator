@@ -50,7 +50,7 @@ body {
 }
 
 button {
-    opacity: 0.8;
+    opacity: 1;
     cursor: pointer;
     width: 5rem;
     height: 5rem;
@@ -178,4 +178,14 @@ button {
 
 button:focus{
     outline: 0;
+}
+
+.clear:hover {
+    background-color: rgba(53, 149, 187, 0.9);
+}
+
+.pressing-num {
+    border: 1px inset black;
+    background-color: rgba(202, 202, 202, 0.9);
+    transition: ease 0.3s;
 }
