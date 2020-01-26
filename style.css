@@ -1,5 +1,8 @@
 body {
-    background-color: silver;
+    background: #12c2e9; 
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+
 }
 
 .grid-container {
@@ -10,10 +13,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
-    
 }
 
 .old-display {
+    opacity: 0.8;
     background-color: rgba(0, 0, 0, 0.9);
     height: 4rem;
     grid-area: 1 / 1 / span 1 / span 4;
@@ -30,6 +33,7 @@ body {
 }
 
 .calculator-display {
+    opacity: 0.8;
     background-color: rgba(0, 0, 0, 0.9);
     height: 4rem;
     grid-area: 2 / 1 / span 1 / span 4;
@@ -46,10 +50,12 @@ body {
 }
 
 button {
+    opacity: 0.8;
     cursor: pointer;
     width: 5rem;
     height: 5rem;
     font-size: larger;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #number0 {
@@ -94,34 +100,82 @@ button {
 
 #op-divide {
     grid-area: 3 / 4;
+    /* background-color: rgba(255, 171, 111, 0.9); */
+    background-color: rgba(110, 110, 110, 0.9);
 }
 
 #op-multiply {
     grid-area: 4 / 4;
+    /* background-color: rgba(114, 123, 250, 0.9) */
+    background-color: rgba(110, 110, 110, 0.9);
 }
 
 #op-minus {
     grid-area: 5 / 4;
+    /* background-color: rgba(252, 205, 78, 0.9); */
+    background-color: rgba(110, 110, 110, 0.9);
 }
 
 #op-plus {
     grid-area: 6 / 4;
+    /* background-color: rgba(250,128,114,0.9); */
+    background-color: rgba(110, 110, 110, 0.9);
 }
 
 .equals {
     grid-area: 7 / 3 / span 1 / span 2;
     width: 10rem;
+    background-color: rgba(55, 231, 202, 0.9)
 }
 
 #op-decimal {
     grid-area: 7 / 2;
+    background-color: rgb(161, 205, 90);
 }
 
 .clear {
     grid-area: 3 / 1 / span 1 / span 2;
     width: 10rem;
+    background-color: rgba(63, 173, 216, 0.9);
 }
 
 .delete {
     grid-area: 3 / 3;
+    background-color: rgba(255, 54, 31, 0.9);
+}
+
+.num-button {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.num-button:hover {
+    background-color: rgba(202, 202, 202, 0.9);
+}
+
+.equals:hover {
+    background-color: rgba(47, 202, 176, 0.9);
+}
+
+#op-plus:hover{
+    background-color: rgba(221, 113, 101, 0.9);
+}
+
+#op-minus:hover{
+    background-color: rgba(216, 175, 63, 0.9);
+}
+
+#op-multiply:hover {
+    background-color: rgba(94, 102, 207, 0.9);
+}
+
+#op-divide:hover {
+    background-color: rgba(216, 145, 94, 0.9);
+}
+
+.delete:hover {
+    background-color: rgba(199, 40, 23, 0.9);
+}
+
+button:focus{
+    outline: 0;
 }
