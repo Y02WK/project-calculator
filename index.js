@@ -42,7 +42,11 @@ opButtons.forEach(button => {
 })
 
 decimalButton.addEventListener('click', () => {
-    calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
+    if (!calcDisplay.textContent.includes('.')){
+        calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
+    } else {
+        return undefined;
+    }
 })
 
 clearButton.addEventListener('click', () => {
