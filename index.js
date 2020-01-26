@@ -7,9 +7,35 @@ const delButton = document.querySelector('.delete');
 const decimalButton = document.querySelector('.op-decimal')
 const calcDisplay = calculator.querySelector('.calculator-display');
 const oldDisplay = calculator.querySelector('.old-display');
+const keyArray  = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+const opArray = [88, 187, 189, 191];
 let opCheck = false;
 let dataArray = [];
 let calculationDone = false;
+
+window.addEventListener('keydown', (event) => {
+    event.preventDefault();
+    if (keyArray.includes(event.keyCode)) {
+        keyboardNum(event);
+    } else if (opArray.includes(event.keyCode)) {
+        keyboardOp(event);
+    } else if (event.keyCode == 13) {
+        operate();
+    } else if (event.keyCode == 190) {
+        decimalPlace();
+    } else if (event.keyCode == 8) {
+        deleteLast();
+    } else if (event.keyCode == 67) {
+        clearCalc();
+    }
+})
+window.addEventListener('keydown', (event) => {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        operate();
+    }
+})
+
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -42,11 +68,7 @@ opButtons.forEach(button => {
 })
 
 decimalButton.addEventListener('click', () => {
-    if (!calcDisplay.textContent.includes('.')){
-        calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
-    } else {
-        return undefined;
-    }
+    decimalPlace();
 })
 
 clearButton.addEventListener('click', () => {
@@ -81,42 +103,46 @@ function deleteLast() {
 function operate() {
     let calculations = 0;
     calculationDone = false;
-    if (calcDisplay.textContent != '') {
-        dataArray.push(calcDisplay.textContent);
-        while (dataArray.length > 1) {
-            if (!dataArray.includes('x') && !dataArray.includes('÷')) {
-                if (dataArray[1] == '+') {
-                    calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
-                    dataArray.splice(0 ,3, calculations);
-                } else if (dataArray[1] == '-') {
-                    calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
-                    dataArray.splice(0 ,3, calculations);
-                }
-            } else if (dataArray.includes('x') && dataArray.includes('÷')) {
-                const multiplyIndex = dataArray.indexOf('x');
-                const diviIndex = dataArray.indexOf('÷');
-                if (multiplyIndex < diviIndex) {
+    try{
+        if (calcDisplay.textContent != '') {
+            dataArray.push(calcDisplay.textContent);
+            while (dataArray.length > 1) {
+                if (!dataArray.includes('x') && !dataArray.includes('÷')) {
+                    if (dataArray[1] == '+') {
+                        calculations = addition(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
+                        dataArray.splice(0 ,3, calculations);
+                    } else if (dataArray[1] == '-') {
+                        calculations = subtract(parseFloat(dataArray[0]), parseFloat(dataArray[2]))
+                        dataArray.splice(0 ,3, calculations);
+                    }
+                } else if (dataArray.includes('x') && dataArray.includes('÷')) {
+                    const multiplyIndex = dataArray.indexOf('x');
+                    const diviIndex = dataArray.indexOf('÷');
+                    if (multiplyIndex < diviIndex) {
+                        calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
+                        dataArray.splice(multiplyIndex-1 ,3, calculations)
+                    } else {
+                        calculations = divide(parseFloat(dataArray[diviIndex-1]), parseFloat(dataArray[diviIndex+1]))
+                        dataArray.splice(diviIndex-1 ,3, calculations)
+                    }
+                } else if (dataArray.includes('x')) {
+                    const multiplyIndex = dataArray.indexOf('x');
                     calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
                     dataArray.splice(multiplyIndex-1 ,3, calculations)
-                } else {
+                } else if (dataArray.includes('÷')) {
+                    const diviIndex = dataArray.indexOf('÷');
                     calculations = divide(parseFloat(dataArray[diviIndex-1]), parseFloat(dataArray[diviIndex+1]))
                     dataArray.splice(diviIndex-1 ,3, calculations)
-                }
-            } else if (dataArray.includes('x')) {
-                const multiplyIndex = dataArray.indexOf('x');
-                calculations = multiply(parseFloat(dataArray[multiplyIndex-1]), parseFloat(dataArray[multiplyIndex+1]))
-                dataArray.splice(multiplyIndex-1 ,3, calculations)
-            } else if (dataArray.includes('÷')) {
-                const diviIndex = dataArray.indexOf('÷');
-                calculations = divide(parseFloat(dataArray[diviIndex-1]), parseFloat(dataArray[diviIndex+1]))
-                dataArray.splice(diviIndex-1 ,3, calculations)
-            } 
-        }
-    }
-    calcDisplay.textContent = roundNumber(dataArray[0]);
-    dataArray = [];
-    oldDisplay.textContent = '';
-    calculationDone = true;
+                } 
+            }
+        } 
+        calcDisplay.textContent = roundNumber(dataArray[0]);
+        dataArray = [];
+        oldDisplay.textContent = '';
+        calculationDone = true;
+    } catch(e) {
+        null
+    } 
 }
 
 function addition(a, b) {
@@ -144,9 +170,59 @@ function roundNumber(num) {
     return Math.round(num * Math.pow(10, 6)) / Math.pow(10, 6);
 }
 
-document.addEventListener("keydown", function(event) {
-    console.log(event.which);
-})
+function keyboardNum (e) {
+    const numKey = document.querySelector(`.num-button[data-key="${e.keyCode}"]`);
+    const display = calcDisplay.innerText;
+    try {
+        if (display == 0) {
+        calcDisplay.textContent = numKey.innerText;
+    } else if (calculationDone == true) {
+        calcDisplay.textContent = numKey.innerText;
+        calculationDone = false;
+    } else {
+        calcDisplay.textContent = (display + numKey.innerText)
+    }
+    opCheck = false;
+    } catch(e) {
+        null;
+    }
+}
+
+function keyboardOp (e) {
+    const opKey = document.querySelector(`.op-button[data-key="${e.keyCode}"]`);
+    try {
+        if (!opCheck == true) {
+            dataArray.push(calcDisplay.textContent);
+            dataArray.push(opKey.textContent)
+            oldDisplay.textContent += calcDisplay.textContent + ' ' + opKey.textContent + ' ';
+            calcDisplay.textContent = '';
+            calculationDone = false;
+            opCheck = true;
+        }
+    } catch(e) {
+        null;
+    }   
+}
+
+function keyboardFunc (e) {
+    e.preventDefault();
+    try {
+        //keyboardNum(e);
+        keyboardDecimal(e);
+        keyboardOp(e);
+        console.log(dataArray)
+    } catch(e) {
+        null;
+    }
+}
+
+function decimalPlace() {
+    if (!calcDisplay.textContent.includes('.')){
+        calcDisplay.textContent = calcDisplay.innerText + decimalButton.innerText
+    } else {
+        return undefined;
+    }
+}
 /* TO DO LIST
 5) Add keyboard support
 */
